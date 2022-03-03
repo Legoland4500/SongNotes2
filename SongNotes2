@@ -1,0 +1,70 @@
+use_bpm 95
+
+live_loop :yearg do
+  14.times do
+    with_fx :reverb do
+      with_fx :reverb do
+        with_fx :reverb do
+          use_synth :piano
+          sleep 1/4.0
+          play :a4
+          sleep 1/4.0
+          play :d4
+          sleep 1/4.0
+          play :g4
+          sleep 1/4.0
+          play :d4
+          sleep 1/4.0
+          play :f4
+          sleep 1/4.0
+          play :a4
+          sleep 1/4.0
+          play :d4
+          sleep 1/4.0
+          play :g4
+          sleep 1/4.0
+          play :c5
+          sleep 1/4.0
+          play :d4
+          sleep 1/4.0
+          play :d5
+          sleep 1/4.0
+          play :d4
+          sleep 1/4.0
+          play :a4
+          sleep 1/4.0
+          play :c5
+          sleep 1/4.0
+          play :g4
+        end
+      end
+    end
+  end
+  stop
+end
+
+sleep 16
+
+2.times do
+  use_synth :pluck
+  with_fx :tremolo do
+    with_fx :compressor do
+      with_fx :reverb do
+        play :bb2, amp: 8, sustain: 7, sustain_level: 4
+        play :f2, amp: 8, sustain: 7, sustain_level: 4
+        play :bb1, amp: 8, sustain: 7, sustain_level: 4
+      end
+    end
+  end
+  sleep 8
+  with_fx :tremolo do
+    with_fx :compressor do
+      with_fx :reverb do
+        play :d3, amp: 8, sustain: 7, sustain_level: 4
+        play :a2, amp: 8, sustain: 7, sustain_level: 4
+        play :d2, amp: 8, sustain: 7, sustain_level: 4
+      end
+    end
+  end
+  sleep 8
+end
