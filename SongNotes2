@@ -1,42 +1,26 @@
 use_bpm 95
+use_synth :piano
+
+define :halen do |l, m, n, o, p|
+  play l
+  sleep 1/4.0
+  play m
+  sleep 1/4.0
+  play n
+  sleep 1/4.0
+  play o
+  sleep 1/4.0
+  play p
+  sleep 1/4.0
+end
 
 live_loop :yearg do
   14.times do
     with_fx :reverb do
       with_fx :reverb do
-        with_fx :reverb do
-          use_synth :piano
-          sleep 1/4.0
-          play :a4
-          sleep 1/4.0
-          play :d4
-          sleep 1/4.0
-          play :g4
-          sleep 1/4.0
-          play :d4
-          sleep 1/4.0
-          play :f4
-          sleep 1/4.0
-          play :a4
-          sleep 1/4.0
-          play :d4
-          sleep 1/4.0
-          play :g4
-          sleep 1/4.0
-          play :c5
-          sleep 1/4.0
-          play :d4
-          sleep 1/4.0
-          play :d5
-          sleep 1/4.0
-          play :d4
-          sleep 1/4.0
-          play :a4
-          sleep 1/4.0
-          play :c5
-          sleep 1/4.0
-          play :g4
-        end
+        halen :a4, :d4, :g4, :d4, :f4
+        halen :a4, :d4, :g4, :c5, :d4
+        halen :d5, :d4, :a4, :c5, :g4
       end
     end
   end
@@ -50,21 +34,55 @@ sleep 16
   with_fx :tremolo do
     with_fx :compressor do
       with_fx :reverb do
-        play :bb2, amp: 8, sustain: 7, sustain_level: 4
-        play :f2, amp: 8, sustain: 7, sustain_level: 4
-        play :bb1, amp: 8, sustain: 7, sustain_level: 4
+        play :bb2, amp: 10, sustain: 7, sustain_level: 4
+        play :f2, amp: 10, sustain: 7, sustain_level: 4
+        play :bb1, amp: 10, sustain: 7, sustain_level: 4
       end
     end
   end
-  sleep 8
+  sample :drum_splash_soft, amp: 0.4
+  sleep 2
+  n=0.2
+  12.times do
+    sample :drum_bass_soft, amp: n
+    sleep 1/2.0
+    n=n+0.2
+  end
   with_fx :tremolo do
     with_fx :compressor do
       with_fx :reverb do
-        play :d3, amp: 8, sustain: 7, sustain_level: 4
-        play :a2, amp: 8, sustain: 7, sustain_level: 4
-        play :d2, amp: 8, sustain: 7, sustain_level: 4
+        play :d3, amp: 10, sustain: 7, sustain_level: 4
+        play :a2, amp: 10, sustain: 7, sustain_level: 4
+        play :d2, amp: 10, sustain: 7, sustain_level: 4
       end
     end
   end
-  sleep 8
+  sample :drum_splash_soft
+  sleep 2
+  n=0.2
+  12.times do
+    sample :drum_bass_soft, amp: n
+    sleep 1/2.0
+    n=n+0.2
+  end
+end
+
+sleep 4
+use_synth :pluck
+with_fx :tremolo do
+  with_fx :compressor do
+    play :c3, amp: 10, sustain: 7, sustain_level: 4
+    play :g2, amp: 10, sustain: 7, sustain_level: 4
+    play :c2, amp: 10, sustain: 7, sustain_level: 4
+  end
+end
+
+live_loop :tsss  do
+  n=0.8
+  10.times do
+    sample :drum_snare_soft
+    sleep 1/2.0
+    n=n+0.2
+  end
+  stop
 end
